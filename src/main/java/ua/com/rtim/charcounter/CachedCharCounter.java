@@ -3,11 +3,11 @@ package ua.com.rtim.charcounter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class CharCounterCache extends CharCounterDecorator {
+public class CachedCharCounter extends CharCounterDecorator {
 
 	private Map<String, Map<Character, Integer>> cache = new LinkedHashMap<>();
 
-	public CharCounterCache(CharCounter charCounter) {
+	public CachedCharCounter(CharCounter charCounter) {
 		super(charCounter);
 	}
 

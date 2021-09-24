@@ -15,7 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 
-class CharCounterTest {
+class CachedCharCounterTest {
 
 	private Map<String, Map<Character, Integer>> cache = new LinkedHashMap<>();
 	private Map<Character, Integer> expected = new LinkedHashMap<>();
