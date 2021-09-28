@@ -20,11 +20,10 @@ class CachedCharCounterTest {
 	@Mock
 	private CharCounter сharCounter;
 	@InjectMocks
-	private CachedCharCounter cachedCharCounter = new CachedCharCounter(сharCounter);
+	private CachedCharCounter cachedCharCounter;
 
 	@Test
-	void givenSomeNonLetterChars_whenCountChars_thenAmountChars() {
-		when(сharCounter.countChars("he20lllo0")).thenReturn(null).thenThrow(IllegalArgumentException.class);
+	void givenSameTextTwice_whenCountChars_thenUnderlyingCharCounterCalledOnce() {
 		Map<Character, Integer> expected = new LinkedHashMap<>();
 		expected.put('h', 1);
 		expected.put('e', 1);
@@ -36,16 +35,5 @@ class CachedCharCounterTest {
 		assertEquals(expected, cachedCharCounter.countChars("he20lllo0"));
 		assertEquals(expected, cachedCharCounter.countChars("he20lllo0"));
 		verify(сharCounter, times(1)).countChars("he20lllo0");
-	}
-
-	@Test
-	void givenSimilarChars_whenCountChars_thenAmountOfThisChar() {
-		when(сharCounter.countChars("hhhh")).thenReturn(null).thenThrow(IllegalArgumentException.class);
-		Map<Character, Integer> expected = new LinkedHashMap<>();
-		expected.put('h', 4);
-		when(сharCounter.countChars("hhhh")).thenReturn(expected);
-		assertEquals(expected, cachedCharCounter.countChars("hhhh"));
-		assertEquals(expected, cachedCharCounter.countChars("hhhh"));
-		verify(сharCounter, times(1)).countChars("hhhh");
 	}
 }
